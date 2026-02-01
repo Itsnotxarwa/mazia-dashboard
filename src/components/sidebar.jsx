@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { LayoutDashboard, ChartColumn, Bot, Settings } from "lucide-react";
 import Logo from "../assets/image.png";
+import Logo2 from "../assets/image_logo.png";
 
 
 export default function Sidebar() {
@@ -19,10 +20,14 @@ export default function Sidebar() {
 
     return(
             <div className="border border-r border-gray-300 bg-white">
-            <aside className="flex flex-col w-68 px-6 h-full 
+            <aside className="flex flex-col w-25 lg:w-68 px-6 h-full 
             py-8 transition-all duration-300 ease-in-out">
-                <div className="flex items-center justify-center">
+                <div className="hidden lg:flex items-center justify-center">
                     <img src={Logo} alt="Mazia" className="w-40" />
+                </div>
+
+                <div className="flex lg:hidden items-center justify-center">
+                    <img src={Logo2} alt="Mazia" className="w-14" />
                 </div>
                 
                 <nav className="space-y-2 mt-18">
@@ -35,7 +40,7 @@ export default function Sidebar() {
                         onClick={() => handleNavClick(link.name)}
                         >
                             {link.icon}
-                            <span className="transition-all duration-300 ease-in-out ">{link.label}</span>
+                            <span className="transition-all duration-300 ease-in-out hidden md:block">{link.label}</span>
                         </a>
                     ))}
                 </nav>
