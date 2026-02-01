@@ -1,11 +1,24 @@
+import { useEffect, useState } from "react";
 import CardsData from "../data/cardsData";
 import Bg from "../assets/bg.png";
-import { TrendingUp, Activity } from "lucide-react";
+import { Activity } from "lucide-react";
 
-export default function kpiCards() {
+export default function KpiCards() {
+    const [overview, setOverview] = useState(null);
+    
+    useEffect(() => {
+        fetch("https://api.voixup.fr/dashboard/v1/overview")
+        .then(res => res.json())
+        .then(setOverview);
+    }, []);
+    
+    if (!overview) return null;
+    
+    const cards = CardsData(overview);
+
     return(
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            {CardsData.map((card, i) => {
+            {cards.map((card, i) => {
                 const Icon = card.icon;
                 return(
                 <div 
@@ -18,10 +31,10 @@ export default function kpiCards() {
                             <span>
                                 {card.title}
                             </span> 
-                            <span className="text-green-700 bg-green-200 px-1 rounded-full text-[10px] flex gap-1 text-nowrap items-center">
+                            <span className={`${card.style} px-2 py-0.5 rounded-full text-[10px] 
+                            flex gap-1 text-nowrap items-center justify-center`}>
                             <Icon size={12} />
-                            +77%
-                            vs hier
+                            {card.trendValue}
                             </span>
                         </p>
                         <div className="flex items-end justify-between mt-2">
@@ -30,11 +43,12 @@ export default function kpiCards() {
                             </span>
                         </div>
                         <p className="flex gap-1 items-center text-sm text-white mt-6">
-                            <span>Activité de votre L'AI</span> 
-                            <Activity size={12} />
+                            <span>
+                                {card.subtitle1}
+                            </span> 
                         </p>
-                        <p className="flex gap-1 items-center text-xs text-gray-500 mt-2">
-                            <span>Appels traités par l'agent AI</span> 
+                        <p className="flex gap-1 items-center text-xs text-gray-50 mt-2">
+                            <span>{card.subtitle2}</span> 
                         </p>
                     </div>
                 </div>

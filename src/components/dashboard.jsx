@@ -1,5 +1,4 @@
 import Sidebar from "./sidebar";
-import Bg from "../assets/bg.png";
 import KpiCards from "./kpiCards";
 
 export default function Dashboard() {
