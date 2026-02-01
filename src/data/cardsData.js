@@ -30,7 +30,7 @@ const CardsData = (data) => [
     trendValue: `secondes`,
     subtitle1: "Temps total d'appels",
     subtitle2: "Durée totale des appels traités",    
-    style: "border border-white rounded-full font-medium"
+    style: "border border-black rounded-full font-medium"
 },
 {
     id: "answered_calls",
@@ -40,7 +40,7 @@ const CardsData = (data) => [
     trendValue: "appels",
     subtitle1: "Appels répondus par l'agent AI",
     subtitle2: "Nombre d'appels traités avec succès",
-    style: "border border-white rounded-full font-medium"
+    style: "border border-black rounded-full font-medium"
 },
 {
     id: "missed_calls",
