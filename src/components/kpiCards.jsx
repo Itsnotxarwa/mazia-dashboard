@@ -1,20 +1,6 @@
-import { useEffect, useState } from "react";
-import CardsData from "../data/cardsData";
-import Bg from "../assets/bg.png";
-import { Activity } from "lucide-react";
 
-export default function KpiCards() {
-    const [overview, setOverview] = useState(null);
-    
-    useEffect(() => {
-        fetch("https://api.voixup.fr/dashboard/v1/overview")
-        .then(res => res.json())
-        .then(setOverview);
-    }, []);
-    
-    if (!overview) return null;
-    
-    const cards = CardsData(overview);
+export default function KpiCards({cards}) {
+
 
     return(
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -23,11 +9,11 @@ export default function KpiCards() {
                 return(
                 <div 
                 key={i} 
-                className="group relative  rounded-xl p-4 shadow-2xl transition-all 
+                className="group relative bg-linear-to-br from-white to-[#032ca6]/20  
+                rounded-xl p-4 shadow-md transition-all border border-[#032ca6]/5
                 duration-300 hover:scale-[1.02]">
-                    <img src={Bg} className="absolute inset-0 object-cover z-0 w-full h-full rounded-xl" />
                     <div className="relative z-50">
-                        <p className="text-xs text-gray-300 flex justify-between">
+                        <p className="text-xs flex justify-between">
                             <span>
                                 {card.title}
                             </span> 
@@ -38,16 +24,16 @@ export default function KpiCards() {
                             </span>
                         </p>
                         <div className="flex items-end justify-between mt-2">
-                            <span className="text-2xl font-semibold text-white">
+                            <span className="text-2xl font-semibold">
                                 {card.value}
                             </span>
                         </div>
-                        <p className="flex gap-1 items-center text-sm text-white mt-6">
+                        <p className="flex gap-1 items-center text-sm mt-6">
                             <span>
                                 {card.subtitle1}
                             </span> 
                         </p>
-                        <p className="flex gap-1 items-center text-xs text-gray-50 mt-2">
+                        <p className="flex gap-1 items-center text-xs mt-2">
                             <span>{card.subtitle2}</span> 
                         </p>
                     </div>
