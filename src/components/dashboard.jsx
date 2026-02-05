@@ -29,7 +29,7 @@ export default function Dashboard() {
                 <KpiCards cards={cards} />
                 <div className="mt-8 flex flex-col lg:flex-row items-center gap-4 w-full justify-between">
                     <CallsBarChart last7Days={overview.volume.calls_last_7_days} last30Days={overview.volume.calls_last_30_days} />
-                    <PieChartAIHuman agentEnded={overview.agent_ended} humanEnded={overview.human_ended} />
+                    <PieChartAIHuman agentEnded={overview.termination.agent_ended} humanEnded={overview.termination.human_ended} />
                 </div>
                 </div>
             </main>
