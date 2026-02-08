@@ -1,14 +1,16 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from "recharts";
 
 export default function CallsBarChart({ last7Days, last30Days }) {
   const [range, setRange] = useState("7"); 
-  const last7DaysArray = Array(7).fill(last7Days);
-  const last30DaysArray = Array(30).fill(last30Days);
-  const data =
-    range === "7"
-      ? last7DaysArray.map((calls, i) => ({ day: `J-${6 - i}`, calls }))
-      : last30DaysArray.map((calls, i) => ({ day: `J-${29 - i}`, calls }));
+  const data = useMemo(() => {
+    const source = range === "7" ? last7Days : last30Days;
+
+    return source.map((item) => ({
+      day: item.date,      
+      calls: item.count,   
+    }));
+  }, [range, last7Days, last30Days]);
   return (
     <div className="w-full bg-white p-4 rounded-lg shadow-md">
       <div className="flex flex-col lg:flex-row space-y-6 justify-between items-start px-2 mb-8">
@@ -26,8 +28,22 @@ export default function CallsBarChart({ last7Days, last30Days }) {
 
       <ResponsiveContainer width="100%" height={300}>
         <BarChart data={data}>
-          <XAxis dataKey="day" stroke="#ccc" />
-          <YAxis stroke="#ccc" hide />
+          <XAxis 
+          interval={0}
+          angle={-45}
+          textAnchor="end"
+          dataKey="day" 
+          height={60}
+          tickFormatter={(day) =>
+          new Date(day).toLocaleDateString("fr-FR", {
+            day: "numeric",
+            month: "short",
+          })
+          } 
+          tick={{ dy: 10, fontSize: 12, fill: "#a0b0e0" }} 
+          tickLine={false}
+          stroke="#a0b0e0" />
+          <YAxis hide />
           <Tooltip />
           <Legend />
           <Bar dataKey="calls" fill="#a0b0e0" radius={[8, 8, 0, 0]} />

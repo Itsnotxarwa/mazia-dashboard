@@ -70,7 +70,7 @@ export default function CustomPieAIHuman({ agentEnded, humanEnded }) {
     return (
     <div className=" text-black bg-white p-4 rounded-lg shadow-md">
         <h3 className="text-2xl text-center tracking-tight">Répartition AI / Humain</h3>
-        <PieChart width={300} height={300}>
+        <PieChart width={300} height={350}>
             <Pie
                 activeIndex={0}
                 activeShape={renderActiveShape}
