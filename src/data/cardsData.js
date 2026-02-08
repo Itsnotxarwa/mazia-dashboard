@@ -9,6 +9,12 @@ const yesterday = data.volume.calls_last_7_days - today;
 const diff = today - yesterday;
 const percent = yesterday ? Math.round((diff / yesterday) * 100) : 0;
 
+const formatDuration = (seconds) => {
+    const min = Math.floor(seconds / 60);
+    const sec = seconds % 60;
+    return `${min}:${sec.toString().padStart(2, "0")}`;
+};
+
 const CardsData = (data) => [
 {
     id: "calls_today",
@@ -24,10 +30,10 @@ const CardsData = (data) => [
 },
 {
     id: "total_duration_seconds",
-    title: "Durée totale (secondes)",
-    value: data.time.total_duration_seconds,
+    title: "Durée totale (minutes)",
+    value: formatDuration(data.time.total_duration_seconds),
     icon: Clock,
-    trendValue: `secondes`,
+    trendValue: `minutes`,
     subtitle1: "Temps total d'appels",
     subtitle2: "Durée totale des appels traités",    
     style: "border border-black rounded-full font-medium"
