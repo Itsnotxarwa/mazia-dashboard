@@ -47,7 +47,7 @@ export default function CallHistoryTable({ setSelectedCall }) {
                         <td className="px-4 py-3">{formatDuration(call.duration_seconds)}</td>
                         <td className="px-4 py-3">{call.from_number}</td>
                         <td className="px-4 py-3">{call.to_number}</td>
-                        <td className="px-4 py-3">{call.disconnect_reason === "HANGUP_BY_CALLEE" ? "Raccroché par le destinataire" : "Raccroché par l’agent"}</td>
+                        <td className="px-4 py-3">{call.disconnect_reason === "HANGUP_BY_CALLEE" ? "Raccroché par l'interlocuteur" : "Raccroché par l’agent"}</td>
                         <td className="px-4 py-3 flex items-center gap-2">
                             {call.call_status === "ANSWERED" ? (
                                 <span className="flex items-center gap-1 bg-green-600 p-1 text-white rounded-full">

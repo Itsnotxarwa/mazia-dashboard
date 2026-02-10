@@ -55,7 +55,7 @@ export default function CallDetails({ selectedCall, setSelectedCall }) {
                 <p className="flex justify-between font-semibold"><span className="text-[#032ca6] text-md font-semibold">De:</span> {selectedCall.from_number}</p>
                 <p className="flex justify-between font-semibold"><span className="text-[#032ca6] text-md font-semibold">À:</span> {selectedCall.to_number}</p>
                 <p className="flex justify-between font-semibold"><span className="text-[#032ca6] text-md font-semibold">Statut:</span> {selectedCall.call_status === "ANSWERED" ? "Répondu" : "Manqué"}</p>
-                <p className="flex justify-between font-semibold"><span className="text-[#032ca6] text-md font-semibold">Raison:</span> {selectedCall.disconnect_reason === "HANGUP_BY_CALLEE" ? "Raccroché par le destinataire" : "Raccroché par l’agent"}</p>
+                <p className="flex justify-between font-semibold"><span className="text-[#032ca6] text-md font-semibold">Raison:</span> {selectedCall.disconnect_reason === "HANGUP_BY_CALLEE" ? "Raccroché par l'interlocuteur" : "Raccroché par l’agent"}</p>
                 <p className="flex justify-between font-semibold"><span className="text-[#032ca6] text-md font-semibold">Type d’appel:</span>{selectedCall.call_type === "inbound" ? "Entrant" : selectedCall.call_type === "outbound" ? "Sortant" : selectedCall.call_type}</p>
             </div>
             
