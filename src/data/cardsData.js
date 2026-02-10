@@ -24,8 +24,8 @@ const CardsData = (data) => [
     icon: diff >= 0 ? TrendingUp : TrendingDown,
     trend: diff >= 0 ? "up" : "down",
     trendValue: `${diff >= 0 ? "+" : ""}${percent}% vs hier`,
-    subtitle1: "Activité de l'AI aujourd'hui",
-    subtitle2: "Appels traités par l'agent AI",
+    subtitle1: "Activité d'aujourd'hui",
+    subtitle2: "Appels traités par les agents",
     style: diff >= 0 ? "text-green-700 bg-green-200" : "text-red-700 bg-red-200",
 },
 {
@@ -44,7 +44,7 @@ const CardsData = (data) => [
     value: data.call_status.answered,
     icon: CheckCircle,
     trendValue: "appels",
-    subtitle1: "Appels répondus par l'agent AI",
+    subtitle1: "Appels répondus par les agents",
     subtitle2: "Nombre d'appels traités avec succès",
     style: "border border-black rounded-full font-medium"
 },
@@ -54,7 +54,7 @@ const CardsData = (data) => [
     value: data.call_status["not_answered/rejected"],
     icon: XCircle,
     trendValue: "appels",
-    subtitle1: "Appels manqués par l'agent AI",
+    subtitle1: "Appels manqués par les agents",
     subtitle2: "Nombre d'appels non traités ou rejetés",
     style: "text-red-700 bg-red-200 rounded-full font-medium"
 }
