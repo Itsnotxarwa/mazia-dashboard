@@ -27,7 +27,7 @@ export default function CallsBarChart({ last7Days, last30Days }) {
       </div>
 
       <ResponsiveContainer width="100%" height={300}>
-        <BarChart data={data}>
+        <BarChart data={[...data].reverse()}>
           <XAxis 
           interval={0}
           angle={-45}
