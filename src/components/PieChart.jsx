@@ -28,8 +28,12 @@ const renderActiveShape = ({
     
     return (
     <g>
-        <text x={cx} y={cy} dy={8} textAnchor="middle" fill={fill} fontWeight="bold">
-            {payload.name}
+        <text x={cx} y={cy-15} textAnchor="middle" fill={fill} fontWeight="bold">
+            {payload.name.split(" ").map((word, i) => (
+                <tspan key={i} x={cx} dy={i === 0 ? 8 : 18}>
+                    {word}
+                </tspan>
+            ))}
         </text>
         
         <Sector
@@ -64,13 +68,13 @@ const renderActiveShape = ({
 
 export default function CustomPieAIHuman({ agentEnded, humanEnded }) {
     const data = [
-        { name: "AI", value: agentEnded },
-        { name: "Human", value: humanEnded },
+        { name: "Raccroché par l’agent", value: agentEnded },
+        { name: "Raccroché par l'interlocuteur", value: humanEnded },
     ];
     return (
     <div className=" text-black bg-white p-4 rounded-lg shadow-md">
         <h3 className="text-2xl text-center tracking-tight">Répartition AI / Humain</h3>
-        <PieChart width={300} height={350}>
+        <PieChart width={380} height={350}>
             <Pie
                 activeIndex={0}
                 activeShape={renderActiveShape}
