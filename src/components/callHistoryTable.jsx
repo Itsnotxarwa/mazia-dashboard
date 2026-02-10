@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Check, X } from "lucide-react";
 
-export default function CallHistoryTable() {
+export default function CallHistoryTable({ setSelectedCall }) {
     const [calls, setCalls] = useState(null);
 
     useEffect(() => {
@@ -23,7 +23,7 @@ export default function CallHistoryTable() {
     };
 
     return (
-    <div className="overflow-x-auto bg-white rounded-lg border border-gray-200">
+    <div className="overflow-x-auto bg-white rounded-lg border border-gray-200 shadow-md">
         <table className="w-full text-sm text-left">
             <thead className="bg-[#032ca6]/5 text-[#032ca6]">
                 <tr>
@@ -39,8 +39,9 @@ export default function CallHistoryTable() {
             <tbody>
                 {calls.map((call) => (
                     <tr
-                    className="border-t border-[#032ca6]/30 font-medium hover:bg-[#032ca6]/5 
+                    className="border-t cursor-pointer border-[#032ca6]/30 font-medium hover:bg-[#032ca6]/5 
                     transition text-[16px]"
+                    onClick={() => setSelectedCall(call)}
                     >
                         <td className="px-4 py-3">{formatDate(call.created_at)} {" "} {formatTime(call.created_at)}</td>
                         <td className="px-4 py-3">{formatDuration(call.duration_seconds)}</td>
