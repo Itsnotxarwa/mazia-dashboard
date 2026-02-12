@@ -12,7 +12,7 @@ export default function CallDetails({ selectedCall, setSelectedCall }) {
     };
     return (
     <div className="fixed inset-0 bg-black/40 z-50 p-0.5">
-        <div className="bg-white rounded-lg h-screen mb-4 lg:ml-200 p-14 overflow-y-auto relative">
+        <div className="bg-white rounded-lg h-screen mb-4 lg:ml-200 p-8 lg:p-14 overflow-y-auto relative">
             <h2 className="font-bold text-lg mb-3">
                 Conversation
             </h2>
@@ -25,10 +25,10 @@ export default function CallDetails({ selectedCall, setSelectedCall }) {
                     parsedTranscription.map((item, index) => (
                     <div 
                     key={index}
-                    className={`space-y-2 flex flex-col max-w-xl mx-auto mt-4
-                    ${item.role === "user" ? "items-start" : "items-end"}`}>
+                    className={`space-y-2 flex flex-col lg:max-w-xl mx-auto mt-4
+                    ${item.role === "user" ? "md:items-start" : "md:items-end"}`}>
                         <div
-                        className={`p-2 rounded w-115 ${
+                        className={`p-2 rounded lg:w-115 ${
                         item.role === "user"
                         ? "bg-gray-100 text-left"
                         : "bg-blue-50 text-left"
