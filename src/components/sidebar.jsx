@@ -15,15 +15,14 @@ export default function Sidebar() {
 
 
     return(
-            <div className="border border-r border-gray-300 bg-white">
-            <aside className="flex flex-col w-25 lg:w-68 px-6 h-full 
+            <aside className="flex flex-col w-18 md:w-21 lg:w-68 px-4 md:px-6 h-screen
             py-8 transition-all duration-300 ease-in-out">
                 <div className="hidden lg:flex items-center justify-center">
                     <img src={Logo} alt="Mazia" className="w-40" />
                 </div>
 
                 <div className="flex lg:hidden items-center justify-center">
-                    <img src={Logo2} alt="Mazia" className="w-14" />
+                    <img src={Logo2} alt="Mazia" className="12 md:w-18" />
                 </div>
                 
                 <nav className="space-y-2 mt-18">
@@ -31,8 +30,9 @@ export default function Sidebar() {
                         <NavLink
                         to={link.href}
                         key={link.name}
-                        className={({ isActive }) => `flex text-left transition-all duration-300 transform cursor-pointer
-                            gap-3 px-4 py-2 text-nowrap text-sm
+                        className={({ isActive }) => `flex items-center lg:items-start justify-center
+                        lg:justify-start text-left transition-all duration-300 transform cursor-pointer
+                            gap-3 px-2 lg:px-4 py-2 text-nowrap text-sm
                             ${isActive
                                 ? "text-black font-medium bg-gray-100"
                                 : "text-gray-500 hover:bg-gray-100 hover:scale-105"
@@ -40,13 +40,12 @@ export default function Sidebar() {
                         }
                         >
                             {link.icon}
-                            <span className="transition-all duration-300 ease-in-out hidden md:block">{link.label}</span>
+                            <span className="transition-all duration-300 ease-in-out hidden lg:block">{link.label}</span>
                         </NavLink>
                     ))}
                 </nav>
                 
             </aside>
-            </div>
 
     )
 }
