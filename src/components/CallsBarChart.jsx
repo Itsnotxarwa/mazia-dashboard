@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from "recharts";
 
 export default function CallsBarChart({ last7Days, last30Days }) {
@@ -11,6 +11,15 @@ export default function CallsBarChart({ last7Days, last30Days }) {
       calls: item.count,   
     }));
   }, [range, last7Days, last30Days]);
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setIsSmallScreen(window.innerWidth < 768);
+    handleResize(); 
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <div className="w-full bg-white p-4 rounded-lg shadow-md">
       <div className="flex flex-col lg:flex-row space-y-6 justify-between items-start px-2 mb-8">
@@ -30,17 +39,17 @@ export default function CallsBarChart({ last7Days, last30Days }) {
         <BarChart data={[...data].reverse()}>
           <XAxis 
           interval={0}
-          angle={-45}
-          textAnchor="end"
+          angle={isSmallScreen ? -90 : -45}
+          textAnchor={isSmallScreen ? "end" : "end"}
           dataKey="day" 
-          height={60}
+          height={isSmallScreen ? 80 : 60}
           tickFormatter={(day) =>
           new Date(day).toLocaleDateString("fr-FR", {
             day: "numeric",
             month: "short",
           })
           } 
-          tick={{ dy: 10, fontSize: 12, fill: "#a0b0e0" }} 
+          tick={{ dy: isSmallScreen ? 16 : 10, dx:-5, fontSize: 12, fill: "#a0b0e0" }} 
           tickLine={false}
           stroke="#a0b0e0" />
           <YAxis hide />
