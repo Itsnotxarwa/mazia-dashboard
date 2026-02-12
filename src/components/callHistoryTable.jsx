@@ -7,7 +7,7 @@ export default function CallHistoryTable({ setSelectedCall }) {
     useEffect(() => {
         fetch("https://api.voixup.fr/dashboard/v1/history")
         .then(res => res.json())
-        .then(data => setCalls(data.items));
+        .then(data => setCalls(data.records));
     }, []);
     console.log("calls", calls)
 
